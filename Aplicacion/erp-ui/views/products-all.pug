@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  div.content
+    div.container-fluid
+      form(method="get" action="add")
+        input(type="name" required="" maxlength="50" name="name")
+        button(type="submit").
+          Crear
+      form(method="post" action="upd")
+        input(type="name" required="" maxlength="50" name="namep")
+        input(type="number" required="" name="idp")
+        button(type="submit").
+          Actualizar
+      form(method="post" action="del")
+        input(type="number" required="" name="idd")
+        button(type="submit").
+          Borrar
+    div.container-fluid
+      table.display#products-all(style="width:100%;")
+        thead
+          tr
+            th.
+              id
+            th.
+              nombre
+                
