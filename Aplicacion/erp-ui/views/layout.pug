@@ -1,0 +1,132 @@
+
+doctype html
+html
+  head
+    meta(charset="utf-8" )
+    link(rel='icon', type='image/png', href='/assets/img/favicon.ico')
+    meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" )
+    
+    title="LIGHT ERP" 
+    meta(content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport')
+    meta(name="viewport" content="width=device-width")
+    
+        
+    //  Bootstrap core CSS  
+    link( href="/assets/css/bootstrap.min.css" rel="stylesheet" )
+    // Animation library for notifications
+    link(href="/assets/css/animate.min.css" rel="stylesheet")
+    // Light Bootstrap Table core CSS
+    link(href="/assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet")
+    
+    //Custom
+    link(rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css")
+    
+    // Fonts and icons
+    link(href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet")
+    link(href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css')
+    link( href="/assets/css/pe-icon-7-stroke.css" rel="stylesheet" )
+    
+  body
+    div.wrapper
+      div.sidebar(data-color="blue",data-image="/assets/img/sidebar-3.jpg")
+            
+        div.sidebar-wrapper
+          div.logo
+            a.simple-text(href="#" ).
+              Light ERP
+          ul.nav#sidebar-active
+            li
+              a(href="/")
+                i.pe-7s-graph
+                p.
+                  Dashboard
+            li
+              a(href="user.html")
+                i.pe-7s-users
+                p.
+                  Usuarios
+            li
+              a(href="/products/all")
+                i.pe-7s-shopbag
+                p.
+                  Productos
+            div.sidebar-background(style="background-image: url(/assets/img/sidebar-3.jpg); opacity: 0.17; z-index: -1;}")
+      
+      div.main-panel
+        nav(class="navbar navbar-default navbar-fixed")
+          div.container-fluid
+            div.navbar-header
+              a.navbar-brand#title(href="/")=params.title
+
+            div(class="collapse navbar-collapse")
+              ul(class="nav navbar-nav navbar-left")
+                li.dropdown
+                  a.dropdown-toggle( href="#" data-toggle="dropdown")
+                    i(class="fa fa-globe")
+                    b(class="caret hidden-lg hidden-md")
+                    p(class="hidden-lg hidden-md").
+                      5 Notificaciones
+                    b(class="caret")
+                  ul.dropdown-menu
+                    li: a(href="#").
+                      Notification 1
+                    li: a(href="#").
+                      Another
+              ul(class="nav navbar-nav navbar-right")
+                li
+                  a(href=""): p.
+                    Cuenta
+                li.dropdown
+                  a.dropdown-toogle(href="#" data-toggle="dropdown")
+                    p
+                      |Menu
+                      b.caret
+                  ul.dropdown-menu
+                    li: a(href="#").
+                      Accion1
+                    li.divider
+                    li: a(href="#").
+                      Accion2
+                li
+                  a(href="#")
+                    p.
+                      Cerrar Sesion
+                li(class="separator hidden-lg")
+    
+        block content
+    
+        footer.footer
+          div.container-fluid
+            nav.pull-left
+              ul: li
+                a(href="/").
+                  Dashboard
+            p(class="copyright pull-right")
+              |&copy; 
+              script.
+                document.write(new Date().getFullYear())
+              |&nbsp 
+              a(href="").
+                ERP Tim
+                    
+  // Core JS Files
+  script( src="/assets/js/jquery.3.2.1.min.js" type="text/javascript")
+  script( src="/assets/js/bootstrap.min.js" type="text/javascript")  
+  
+  // Charts Plugin
+  script(script src="/assets/js/chartist.min.js")  
+  
+  // Notifications Plugin
+  script(script src="/assets/js/bootstrap-notify.js")
+  
+  //Custom
+  script(type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js")
+  
+  script#Custom-script(type='text/javascript').
+    var title = "!{params.title}";
+    if(!{params.data}.length !== 0){
+      var data = !{params.data};
+    }
+    
+  script(script src="/javascripts/utils.js")
+  script(script src="/javascripts/"+ params.customscript)

@@ -1,0 +1,22 @@
+{
+  "name": "erp",
+  "version": "1.0.0",
+  "description": "erp implemented with microservices",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "erp",
+    "microservices",
+    "rest"
+  ],
+  "author": "Alex Jara - Jordan Esquivel - Yeison Fernandez",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.7.2",
+    "express": "^4.16.3",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  }
+}
