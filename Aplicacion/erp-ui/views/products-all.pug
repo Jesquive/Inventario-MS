@@ -3,19 +3,67 @@ extends layout
 block content
   div.content
     div.container-fluid
-      form(method="get" action="add")
-        input(type="name" required="" maxlength="50" name="name")
-        button(type="submit").
-          Crear
-      form(method="post" action="upd")
-        input(type="name" required="" maxlength="50" name="namep")
-        input(type="number" required="" name="idp")
-        button(type="submit").
-          Actualizar
-      form(method="post" action="del")
-        input(type="number" required="" name="idd")
-        button(type="submit").
-          Borrar
+      div(class="row justify-content-center")
+        div(class="col-6 col-md-4")
+          div.card
+            div.card-header
+              h4.card-title.
+                Crear
+              div.card-body
+                form(method="get" action="add")
+                  div.row
+                    div.col-md-6
+                      div.form-group
+                        input(type="name" required="" maxlength="50" name="name")
+                  div.row
+                    div.col-md-6
+                      div.form-group
+                        button(type="submit").
+                          Crear
+        div(class="col-6 col-md-4")
+          div.card
+            div.card-header
+              h4.card-title.
+                Actualizar
+              div.card-body
+                form(method="post" action="upd")
+                  div.row
+                    div.col-md-6
+                      div.form-group
+                        input(type="name" required="" maxlength="50" name="namep")
+                  div.row
+                    div.col-md-6
+                      div.form-group
+                        select(name="idp" required="")
+                          each obj in params.data2
+                            option(value=obj.id) #{obj.name}
+                          else
+                            li No hay valores
+                  div.row
+                    div.col-md-6
+                      div.form-group
+                        button(type="submit").
+                          Actualizar
+        div(class="col-6 col-md-4")
+          div.card
+            div.card-header
+              h4.card-title.
+                Borrar
+              div.card-body
+                form(method="post" action="del")
+                  div.row
+                    div.col-md-6
+                      div.form-group
+                        select(name="idd" required="")
+                          each obj in params.data2
+                            option(value=obj.id) #{obj.name}
+                          else
+                            li No hay valores
+                  div.row
+                    div.col-md-6
+                      div.form-group
+                        button(type="submit").
+                          Borrar
     div.container-fluid
       table.display#products-all(style="width:100%;")
         thead

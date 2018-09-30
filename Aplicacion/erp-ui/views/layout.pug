@@ -56,6 +56,12 @@ html
         nav(class="navbar navbar-default navbar-fixed")
           div.container-fluid
             div.navbar-header
+              button.navbar-toggle(type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2")
+                span.sr-only.
+                  Toggle navigation
+                span.icon.bar
+                span.icon.bar
+                span.icon.bar
               a.navbar-brand#title(href="/")=params.title
 
             div(class="collapse navbar-collapse")
@@ -65,8 +71,7 @@ html
                     i(class="fa fa-globe")
                     b(class="caret hidden-lg hidden-md")
                     p(class="hidden-lg hidden-md").
-                      5 Notificaciones
-                    b(class="caret")
+                      Notificaciones
                   ul.dropdown-menu
                     li: a(href="#").
                       Notification 1
@@ -119,11 +124,14 @@ html
   // Notifications Plugin
   script(script src="/assets/js/bootstrap-notify.js")
   
+  script(src="/assets/js/light-bootstrap-dashboard.js?v=1.4.0")
+  
   //Custom
   script(type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js")
   
   script#Custom-script(type='text/javascript').
     var title = "!{params.title}";
+    
     if(!{params.data}.length !== 0){
       var data = !{params.data};
     }

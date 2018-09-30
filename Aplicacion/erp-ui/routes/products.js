@@ -3,6 +3,7 @@ var router = express.Router();
 var requestP = require('request-promise');
 
 var gatewayURI = "http://localhost:8080/productos/";
+
 router.get('/all', function(req, res, next) {
     var jsondata = {};
 
@@ -15,7 +16,8 @@ router.get('/all', function(req, res, next) {
       res.render('products-all', { params:
         {title: 'Productos',
         customscript:'products.js',
-        data:JSON.stringify(jsondata)
+        data:JSON.stringify(jsondata),
+        data2:jsondata
       } });
     }).catch(function(err){
       //GG
@@ -66,8 +68,5 @@ router.post('/del', function(req, res, next) {
     res.redirect("/products/all");
   });
 });
-
-
-
 
 module.exports = router;
