@@ -3,7 +3,7 @@ import os
 class Config(object):
     DEBUG = False
     CSRF_ENABLED = True
-    SECRET = "SUPERCARIFLAGILISTICOESPIRALIDOSO"
+    SECRET = "SUPERCARIFLAGILISTICO"
     SQLALCHEMY_DATABASE_URI = "postgresql://postgres:postgres@localhost/producto"
 
 
