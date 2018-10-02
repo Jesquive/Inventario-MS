@@ -2,19 +2,22 @@ var express = require('express');
 var router = express.Router();
 var requestP = require('request-promise');
 
+var gatewayURI = "http://localhost:8080/productos/";
+
 router.get('/all', function(req, res, next) {
-    var jsondata = {}
+    var jsondata = {};
 
     requestP({
       "method":"GET",
-      "uri": "http://127.0.0.1:5000/productos/",
+      "uri": gatewayURI,
       "json": true
     }).then(function(body){
       jsondata=body;
       res.render('products-all', { params:
         {title: 'Productos',
         customscript:'products.js',
-        data:JSON.stringify(jsondata)
+        data:JSON.stringify(jsondata),
+        data2:jsondata
       } });
     }).catch(function(err){
       //GG
@@ -31,7 +34,7 @@ router.get('/add', function(req, res, next) {
   var nameForm = req.query.name;
   requestP({
     "method":"POST",
-    "uri": "http://127.0.0.1:5000/productos/",
+    "uri": gatewayURI,
     "formData": {name: nameForm}
   }).then(function(body){
     console.log("exito");
@@ -45,7 +48,7 @@ router.post('/upd', function(req, res, next) {
 
   requestP({
     "method":"PUT",
-    "uri": "http://127.0.0.1:5000/productos/"+idForm,
+    "uri": gatewayURI+idForm,
     "formData": {name: nameForm}
   }).then(function(body){
     console.log("exito");
@@ -55,7 +58,7 @@ router.post('/upd', function(req, res, next) {
 
 router.post('/del', function(req, res, next) {
   var idForm = req.body.idd;
-  var url = "http://127.0.0.1:5000/productos/"+idForm;
+  var url = gatewayURI+idForm;
   console.log(url);
   requestP({
     "method":"DELETE",
@@ -65,8 +68,5 @@ router.post('/del', function(req, res, next) {
     res.redirect("/products/all");
   });
 });
-
-
-
 
 module.exports = router;
