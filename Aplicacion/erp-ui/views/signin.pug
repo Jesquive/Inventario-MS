@@ -17,9 +17,10 @@ html
     link(href="/assets/css/animate.min.css" rel="stylesheet")
     // Light Bootstrap Table core CSS
     link(href="/assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet")
-    
+    // Animation library for notifications
+    link(href="/assets/css/animate.min.css" rel="stylesheet")
     //Custom
-    link(href="stylesheets/signin.css" rel="stylesheet")
+    link(href="/stylesheets/signin.css" rel="stylesheet")
     
     // Fonts and icons
     link(href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet")
@@ -28,20 +29,35 @@ html
       
     body.text-center
       div(class="wrapper back")
-      form.form-signin
+      form.form-signin(method="post" action="authLog")
         img()
         h1(class="h3 mb-3 font-weight-normal").
           Iniciar Sesion
         label.sr-only(for="inputEmail").
           Email
-        input.form-control#inputEmail(type="email" placeholder="ejemplo@direccion.com" required autofocus)
+        input.form-control#inputEmail(name="email" type="email" placeholder="ejemplo@direccion.com" required autofocus)
         label.sr-only(for="inputPassword").
           Contraseña
-        input.form-control#inputPassword(type="password" placeholder="Contraseña" required)
+        input.form-control#inputPassword(name="password" type="password" placeholder="Contraseña" required)
         button(class="btn btn-lg btn-primary btn-block btn-fill" type="submit").
           Entrar
     
+
     // Core JS Files
     script( src="/assets/js/jquery.3.2.1.min.js" type="text/javascript")
     script( src="/assets/js/bootstrap.min.js" type="text/javascript")  
       
+    // Notifications Plugin
+    script(script src="/assets/js/bootstrap-notify.js")
+    
+    script(src="/assets/js/light-bootstrap-dashboard.js?v=1.4.0")
+    //
+    script#Custom-script(type='text/javascript').
+      var mes = "!{params.message}";
+      if(typeof mes  !== undefined){
+        var mes = "!{params.message}";
+      } else {
+        var mes = "";
+      }
+          
+    script(script src="/javascripts/"+ params.customscript)  

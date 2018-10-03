@@ -1,20 +1,31 @@
 var express = require('express');
 var router = express.Router();
 var requestP = require('request-promise');
+var session = require('express-session');
+
+var gatewayURI = "http://localhost:8080/productos/";
+
 
 router.get('/all', function(req, res, next) {
-    var jsondata = {}
+    ssn= req.session;
 
+    var jsondata = {};
+    var header =
+    {
+      "Authorization": "Bearer "+ssn.token
+    };
     requestP({
       "method":"GET",
-      "uri": "http://127.0.0.1:5000/productos/",
+      "uri": gatewayURI,
+      "headers": header,
       "json": true
     }).then(function(body){
       jsondata=body;
       res.render('products-all', { params:
         {title: 'Productos',
         customscript:'products.js',
-        data:JSON.stringify(jsondata)
+        data:JSON.stringify(jsondata),
+        data2:jsondata
       } });
     }).catch(function(err){
       //GG
@@ -22,16 +33,23 @@ router.get('/all', function(req, res, next) {
       res.render('products-all', { params:
         {title: 'Productos',
         customscript:'products.js',
-        data:JSON.stringify(jsondata)
+        data:JSON.stringify(jsondata),
+        data2:{}
       } });
     });
 });
 
 router.get('/add', function(req, res, next) {
+  ssn= req.session;
+  var header =
+  {
+    "Authorization": "Bearer "+ssn.token
+  };
   var nameForm = req.query.name;
   requestP({
     "method":"POST",
-    "uri": "http://127.0.0.1:5000/productos/",
+    "uri": gatewayURI,
+    "headers": header,
     "formData": {name: nameForm}
   }).then(function(body){
     console.log("exito");
@@ -40,12 +58,18 @@ router.get('/add', function(req, res, next) {
 });
 
 router.post('/upd', function(req, res, next) {
+  ssn= req.session;
+  var header =
+  {
+    "Authorization": "Bearer "+ssn.token
+  };
   var nameForm = req.body.namep;
   var idForm = req.body.idp;
 
   requestP({
     "method":"PUT",
-    "uri": "http://127.0.0.1:5000/productos/"+idForm,
+    "uri": gatewayURI+idForm,
+    "headers": header,
     "formData": {name: nameForm}
   }).then(function(body){
     console.log("exito");
@@ -54,19 +78,22 @@ router.post('/upd', function(req, res, next) {
 });
 
 router.post('/del', function(req, res, next) {
+  ssn= req.session;
+  var header =
+  {
+    "Authorization": "Bearer "+ssn.token
+  };
   var idForm = req.body.idd;
-  var url = "http://127.0.0.1:5000/productos/"+idForm;
+  var url = gatewayURI+idForm;
   console.log(url);
   requestP({
     "method":"DELETE",
-    "uri": url
+    "uri": url,
+    "headers": header
   }).then(function(body){
     console.log("exito");
     res.redirect("/products/all");
   });
 });
-
-
-
 
 module.exports = router;

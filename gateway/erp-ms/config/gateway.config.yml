@@ -1,0 +1,45 @@
+http:
+  port: 8080
+admin:
+  port: 9876
+  hostname: localhost
+apiEndpoints:
+  productos_req:
+    host: localhost
+    methods: 'GET,POST,PUT,DELETE'
+    paths: ['/productos/*']
+  usuarios_req:
+    host: localhost
+    methods: 'GET,POST,PUT,DELETE'
+    paths: ['/auth/*']
+serviceEndpoints:
+  productos_resp:
+    url: 'http://localhost:5000'
+  usuarios_resp:
+    url: 'http://localhost:5000'
+policies:
+  - basic-auth
+  - cors
+  - expression
+  - key-auth
+  - log
+  - oauth2
+  - proxy
+  - rate-limit
+pipelines:
+  productos_pipeline:
+    apiEndpoints:
+      - productos_req
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: productos_resp
+              changeOrigin: true
+  usuarios_pipeline:
+    apiEndpoints:
+      - usuarios_req
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: usuarios_resp
+              changeOrigin: true
