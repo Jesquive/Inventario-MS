@@ -15,26 +15,36 @@ block content
                     div.col-md-1
                     div.col-md-6
                       div.form-group
-                        input(type="text" required="" maxlength="50" name="name" placeholder="Name")
+                      label(style="width: 90%;").
+                        Name
+                      input(type="text" required="" maxlength="50" name="name" placeholder="Name")
                   div.row
                     div.col-md-1
                     div.col-md-6
                       div.form-group
+                        label(style="width: 90%;").
+                          Code
                         input(type="text" required="" maxlength="50" name="code" placeholder="Code")    
                   div.row
                     div.col-md-1
                     div.col-md-6
                       div.form-group
+                        label(style="width: 90%;").
+                          Stock
                         input(type="number" min="0" required=""  name="stock" placeholder="Stock")  
                   div.row
                     div.col-md-1
                     div.col-md-6
                       div.form-group
+                        label(style="width: 90%;").
+                          Patent
                         input(type="text" required="" maxlength="50" name="patent" placeholder="Patent")     
                   div.row
                     div.col-md-1
                     div.col-md-6
                       div.form-group
+                        label(style="width: 90%;").
+                          Provider
                         input(type="text" required="" maxlength="50" name="provider" placeholder="Provider")  
                   div.row
                     div.col-md-1
@@ -53,22 +63,30 @@ block content
                     div.col-md-1
                     div.col-md-6
                       div.form-group
+                        label(style="width: 90%;").
+                          New Name
                         input(type="text" required="" maxlength="50" name="nameP" placeholder="Name")
                   div.row
                     div.col-md-1
                     div.col-md-6
                       div.form-group
+                        label(style="width: 90%;").
+                          Stock
                         input(type="number" min="0" required=""  name="stockP" placeholder="Stock")  
                   div.row
                     div.col-md-1
                     div.col-md-6
+                    
                       div.form-group
+                        label(style="width: 90%;").
+                          Actual Name
                         select(name="idp" required="")
                           each obj in params.data2
                             option(value=obj.id) #{obj.name}
                           else
                             li No Values
                   div.row
+                    div.col-md-1
                     div.col-md-6
                       div.form-group
                         button(type="submit").
@@ -84,6 +102,8 @@ block content
                     div.col-md-1
                     div.col-md-6
                       div.form-group
+                        label(style="width: 90%;").
+                          Name
                         select(name="idd" required="")
                           each obj in params.data2
                             option(value=obj.id) #{obj.name}
@@ -95,16 +115,22 @@ block content
                       div.form-group
                         button(type="submit").
                           Erase
-    div.container-fluid
-      table.display#products-all(style="width:100%;")
-        thead
-          tr
-            th.
-              Id
-            th.
-              Name
-            th.
-              Stock
-            th.
-              Provider
-                
+
+                    
+      div.container-fluid
+        table.display#products-all(style="width:100%;")
+          thead
+            tr
+              th.
+                Id
+              th.
+                Name
+              th.
+                Stock
+              th.
+                Provider
+              th.
+                Action
+
+
+                  

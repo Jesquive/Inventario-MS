@@ -42,6 +42,15 @@ exports.providerDetails = function (req, res) {
     })
 };
 
+//GET BY NAME
+exports.providerDetailsByName = function (req, res) {
+    Provider.find({name: req.params.name}, function (err, provider) {
+        console.log("gerer");
+        if (err) return next(err);
+        res.send(provider);
+    })
+};
+
 //UPDATE
 exports.providerUpdate = function (req, res) {
     Provider.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, provider) {

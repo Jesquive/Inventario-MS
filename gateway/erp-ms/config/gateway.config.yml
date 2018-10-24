@@ -12,11 +12,23 @@ apiEndpoints:
     host: localhost
     methods: 'GET,POST,PUT,DELETE'
     paths: ['/auth/*']
+  providers_req:
+    host: localhost
+    methods: 'GET,POST,PUT,DELETE'
+    paths: ['/providers/*']
+  clients_req:
+    host: localhost
+    methods: 'GET,POST,PUT,DELETE'
+    paths: ['/clients/*']
 serviceEndpoints:
   productos_resp:
-    url: 'https://productos-api-heroku.herokuapp.com'
+    url: 'https://api-productos-heroku.herokuapp.com'
   usuarios_resp:
     url: 'https://usuarios-api-heroku.herokuapp.com'
+  providers_resp:
+    url: 'http://localhost:3080'
+  clients_resp:
+    url: 'https://api-clientes-heroku.herokuapp.com'
 policies:
   - basic-auth
   - cors
@@ -42,4 +54,20 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: usuarios_resp
+              changeOrigin: true
+  provider_pipeline:
+    apiEndpoints:
+      - providers_req
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: providers_resp
+              changeOrigin: true
+  clients_pipeline:
+    apiEndpoints:
+      - clients_req
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: clients_resp
               changeOrigin: true

@@ -100,6 +100,7 @@ html
     
         block content
     
+        
         footer.footer
           div.container-fluid
             nav.pull-left
@@ -113,7 +114,6 @@ html
               |&nbsp 
               a(href="").
                 ERP Tim
-                    
   // Core JS Files
   script( src="/assets/js/jquery.3.2.1.min.js" type="text/javascript")
   script( src="/assets/js/bootstrap.min.js" type="text/javascript")  
@@ -133,6 +133,7 @@ html
     var title = "!{params.title}";
     
     if(!{params.data}.length !== 0){
+      console.log("HI");
       var data = !{params.data};
     }
     

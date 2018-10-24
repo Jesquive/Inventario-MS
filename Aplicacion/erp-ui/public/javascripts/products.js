@@ -8,8 +8,16 @@ $(document).ready(function(){
         { data: 'id' },
         { data: 'name' },
         { data: 'stock' },
-        { data: 'provider' }
+        { data: 'provider' },
+        {
+          data: null,
+          render: function ( data, type, row ) {
+            return '<a class="btn btn-info btn-fill" href="/products/'+row.id+'" >See</a>';
+          }
+        }
 
     ]
   });
+
+
 });

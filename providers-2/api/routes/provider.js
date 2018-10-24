@@ -10,6 +10,7 @@ router.post('/create', ProviderController.createProvider);
 router.post('/update/:id', ProviderController.providerUpdate);
 router.post('/delete/:id', ProviderController.providerDelete);
 router.post('/read/:id', ProviderController.providerDetails);
+router.post('/read/name/:name', ProviderController.providerDetailsByName);
 
 
 

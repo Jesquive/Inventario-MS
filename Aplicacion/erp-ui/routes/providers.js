@@ -3,7 +3,7 @@ var router = express.Router();
 var requestP = require('request-promise');
 var session = require('express-session');
 
-var gatewayURI = "http://localhost:8080/products/";
+var gatewayURI = "http://localhost:8080/providers/";
 
 
 router.get('/all', function(req, res, next) {
@@ -41,7 +41,6 @@ router.get('/all', function(req, res, next) {
 
 router.get('/:id', function(req, res, next) {
   ssn= req.session;
-  var providerURL = "http://localhost:3000/providers/name/";
   var jsondata = {};
   var header =
   {
@@ -72,18 +71,44 @@ router.get('/:id', function(req, res, next) {
   });
 });
 
+router.get('/name/:name',function(req,res,next){
+    ssn= req.session;
+    var jsondata = {};
+    var header =
+    {
+      "Authorization": "Bearer "+ssn.token
+    };
+    requestP({
+      "method":"POST",
+      "uri": gatewayURI+'read/name/'+req.params.name,
+      "headers": header,
+      "json": true
+    }).then(function(body){
+    console.log("geeeeeeeeeeeeeeeeeeeeeeeeeee");
+    console.log(body);
+
+      jsondata=body;
+      res.send(jsondata);
+    }).catch(function(err){
+      //GG
+    console.log("ASDGSDFHGSDFH");
+
+      console.log(err);
+      res.send(jsondata);
+    });
+});
 
 router.post('/add', function(req, res, next) {
   ssn= req.session;
-  console.log(ssn.id);
+  var contactOBJ = {
+    contact1: req.body.contact1,
+    contact2: req.body.contact2,
+    contact3: req.body.contact3
+  };
   var sendData = 
   {
     name: req.body.name,
-    code: req.body.code,
-    stock: req.body.stock,
-    patent: req.body.patent,
-    provider: req.body.provider,
-    aggregated_by: 1
+    contact: contactOBJ,
   };
   var header =
   {
