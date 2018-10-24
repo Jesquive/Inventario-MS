@@ -36,7 +36,7 @@ html
               Light ERP
           ul.nav#sidebar-active
             li
-              a(href="/dashboard/all")
+              a(href="/dashboard")
                 i.pe-7s-graph
                 p.
                   Dashboard
@@ -44,12 +44,12 @@ html
               a(href="#")
                 i.pe-7s-users
                 p.
-                  Usuarios
+                  Users
             li
               a(href="/products/all")
                 i.pe-7s-shopbag
                 p.
-                  Productos
+                  Products
             div.sidebar-background(style="background-image: url(/assets/img/sidebar-3.jpg); opacity: 0.17; z-index: -1;}")
       
       div.main-panel
@@ -71,7 +71,7 @@ html
                     i(class="fa fa-globe")
                     b(class="caret hidden-lg hidden-md")
                     p(class="hidden-lg hidden-md").
-                      Notificaciones
+                      Notifications
                   ul.dropdown-menu
                     li: a(href="#").
                       Notification 1
@@ -80,7 +80,7 @@ html
               ul(class="nav navbar-nav navbar-right")
                 li
                   a(href=""): p.
-                    Cuenta
+                    Account
                 li.dropdown
                   a.dropdown-toogle(href="#" data-toggle="dropdown")
                     p
@@ -88,14 +88,14 @@ html
                       b.caret
                   ul.dropdown-menu
                     li: a(href="#").
-                      Accion1
+                      Action1
                     li.divider
                     li: a(href="#").
-                      Accion2
+                      Action2
                 li
                   a(href="/auth/signout")
                     p.
-                      Cerrar Sesion
+                      Log Out
                 li(class="separator hidden-lg")
     
         block content

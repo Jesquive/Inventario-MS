@@ -38,6 +38,8 @@ router.get('/signout', function(req, res, next) {
 
 router.use(function(req,res,next){
   ssn= req.session;
+
+
   if(ssn.email || ssn.token)
   {
     res.redirect("/dashboard/all");
@@ -90,7 +92,7 @@ router.post('/authLog', function(req, res, next) {
   ssn=req.session;
   var emailForm = req.body.email;
   var passwForm = req.body.password;
-
+  console.log(gatewayURI+"login");
   requestP({
     "method":"POST",
     "uri": gatewayURI+"login",
@@ -100,9 +102,11 @@ router.post('/authLog', function(req, res, next) {
     }
   }).then(function(body){
     var body = JSON.parse(body);
+    console.log("helow"+body.auth_token);
     ssn.email = emailForm;
-    ssn.token = body.access_token;
-    res.redirect("/dashboard/all");
+    ssn.id = body.id;
+    ssn.token = body.auth_token;
+    res.redirect("/dashboard");
   });
 });
 

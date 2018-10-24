@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  div.content
+    div.container-fluid
+      div(class="row justify-content-center")
+        div(class="col-6 col-md-4")
+          div.card
+            div.card-header
+              h4.card-title.
+                Product
+              div.card-body
+                form(method="get" action="add")
+                    div.row
+                        div.col-md-1
+                        div.col-md-6
+                        div.form-group
+                            input(type="text" required="" maxlength="50" name="name" placeholder="Name")
+                    div.row
+                        div.col-md-1
+                        div.col-md-6
+                        div.form-group
+                            input(type="text" required="" maxlength="50" name="code" placeholder="Code")    
+                    div.row
+                        div.col-md-1
+                        div.col-md-6
+                        div.form-group
+                            input(type="number" min="0" required=""  name="stock" placeholder="Stock")  
+                    div.row
+                        div.col-md-1
+                        div.col-md-6
+                        div.form-group
+                            input(type="text" required="" maxlength="50" name="patent" placeholder="Patent")     
+                    div.row
+                        div.col-md-1
+                        div.col-md-6
+                        div.form-group
+                            input(type="text" required="" maxlength="50" name="provider" placeholder="Provider")  
+                    div.row
+                        div.col-md-1
+                        div.col-md-6
+                        div.form-group
+                            button(type="submit").
+                            Create

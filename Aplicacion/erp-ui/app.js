@@ -26,7 +26,6 @@ var sess = {
   saveUninitialized: true
 }
 app.use(session(sess))
-app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -45,6 +44,9 @@ app.use('/auth',authRouter);
 //middleware de session
 app.use(function (req, res, next) {
   ssn= req.session;
+  console.log(ssn.email);
+  console.log(ssn.token);
+  console.log(ssn.email || ssn.token);
   if((ssn.email === undefined || ssn.token === undefined))
   {
     res.redirect("/auth/signin");

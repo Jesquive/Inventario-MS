@@ -8,68 +8,103 @@ block content
           div.card
             div.card-header
               h4.card-title.
-                Crear
+                Create
               div.card-body
-                form(method="get" action="add")
+                form(method="post" action="add")
                   div.row
+                    div.col-md-1
                     div.col-md-6
                       div.form-group
-                        input(type="name" required="" maxlength="50" name="name")
+                        input(type="text" required="" maxlength="50" name="name" placeholder="Name")
                   div.row
+                    div.col-md-1
+                    div.col-md-6
+                      div.form-group
+                        input(type="text" required="" maxlength="50" name="code" placeholder="Code")    
+                  div.row
+                    div.col-md-1
+                    div.col-md-6
+                      div.form-group
+                        input(type="number" min="0" required=""  name="stock" placeholder="Stock")  
+                  div.row
+                    div.col-md-1
+                    div.col-md-6
+                      div.form-group
+                        input(type="text" required="" maxlength="50" name="patent" placeholder="Patent")     
+                  div.row
+                    div.col-md-1
+                    div.col-md-6
+                      div.form-group
+                        input(type="text" required="" maxlength="50" name="provider" placeholder="Provider")  
+                  div.row
+                    div.col-md-1
                     div.col-md-6
                       div.form-group
                         button(type="submit").
-                          Crear
+                          Create
         div(class="col-6 col-md-4")
           div.card
             div.card-header
               h4.card-title.
-                Actualizar
+                Update
               div.card-body
                 form(method="post" action="upd")
                   div.row
+                    div.col-md-1
                     div.col-md-6
                       div.form-group
-                        input(type="name" required="" maxlength="50" name="namep")
+                        input(type="text" required="" maxlength="50" name="nameP" placeholder="Name")
                   div.row
+                    div.col-md-1
+                    div.col-md-6
+                      div.form-group
+                        input(type="number" min="0" required=""  name="stockP" placeholder="Stock")  
+                  div.row
+                    div.col-md-1
                     div.col-md-6
                       div.form-group
                         select(name="idp" required="")
                           each obj in params.data2
                             option(value=obj.id) #{obj.name}
                           else
-                            li No hay valores
+                            li No Values
                   div.row
                     div.col-md-6
                       div.form-group
                         button(type="submit").
-                          Actualizar
+                          Update
         div(class="col-6 col-md-4")
           div.card
             div.card-header
               h4.card-title.
-                Borrar
+                Erase
               div.card-body
                 form(method="post" action="del")
                   div.row
+                    div.col-md-1
                     div.col-md-6
                       div.form-group
                         select(name="idd" required="")
                           each obj in params.data2
                             option(value=obj.id) #{obj.name}
                           else
-                            li No hay valores
+                            li No values
                   div.row
+                    div.col-md-1
                     div.col-md-6
                       div.form-group
                         button(type="submit").
-                          Borrar
+                          Erase
     div.container-fluid
       table.display#products-all(style="width:100%;")
         thead
           tr
             th.
-              id
+              Id
             th.
-              nombre
+              Name
+            th.
+              Stock
+            th.
+              Provider
                 

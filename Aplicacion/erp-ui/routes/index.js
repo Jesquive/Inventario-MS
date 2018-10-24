@@ -5,7 +5,7 @@ var ssn;
 
 
 /* GET home page. */
-router.get('/all', function(req, res, next) {
+router.get('/', function(req, res, next) {
   res.render('index', { params:
     {
     title: 'Dashboard' ,

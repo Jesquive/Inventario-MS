@@ -3,7 +3,7 @@ var router = express.Router();
 var requestP = require('request-promise');
 var session = require('express-session');
 
-var gatewayURI = "http://localhost:8080/productos/";
+var gatewayURI = "http://localhost:8080/products/";
 
 
 router.get('/all', function(req, res, next) {
@@ -39,18 +39,27 @@ router.get('/all', function(req, res, next) {
     });
 });
 
-router.get('/add', function(req, res, next) {
+router.post('/add', function(req, res, next) {
   ssn= req.session;
+  console.log(ssn.id);
+  var sendData = 
+  {
+    name: req.body.name,
+    code: req.body.code,
+    stock: req.body.stock,
+    patent: req.body.patent,
+    provider: req.body.provider,
+    aggregated_by: 1
+  };
   var header =
   {
     "Authorization": "Bearer "+ssn.token
   };
-  var nameForm = req.query.name;
   requestP({
     "method":"POST",
     "uri": gatewayURI,
     "headers": header,
-    "formData": {name: nameForm}
+    "formData": sendData
   }).then(function(body){
     console.log("exito");
     res.redirect("/products/all");
@@ -63,14 +72,18 @@ router.post('/upd', function(req, res, next) {
   {
     "Authorization": "Bearer "+ssn.token
   };
-  var nameForm = req.body.namep;
+  var sendData = 
+  {
+    name: req.body.nameP,
+    stock: req.body.stockP,
+  };
   var idForm = req.body.idp;
 
   requestP({
     "method":"PUT",
     "uri": gatewayURI+idForm,
     "headers": header,
-    "formData": {name: nameForm}
+    "formData": sendData
   }).then(function(body){
     console.log("exito");
     res.redirect("/products/all");

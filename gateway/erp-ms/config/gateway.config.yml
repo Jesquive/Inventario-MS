@@ -7,16 +7,16 @@ apiEndpoints:
   productos_req:
     host: localhost
     methods: 'GET,POST,PUT,DELETE'
-    paths: ['/productos/*']
+    paths: ['/products/*']
   usuarios_req:
     host: localhost
     methods: 'GET,POST,PUT,DELETE'
     paths: ['/auth/*']
 serviceEndpoints:
   productos_resp:
-    url: 'http://localhost:5000'
+    url: 'https://productos-api-heroku.herokuapp.com'
   usuarios_resp:
-    url: 'http://localhost:5000'
+    url: 'https://usuarios-api-heroku.herokuapp.com'
 policies:
   - basic-auth
   - cors
